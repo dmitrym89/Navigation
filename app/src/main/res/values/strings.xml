@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Navigation</string>
+    <string name="bottom_nav_item_1">item_1</string>
+    <string name="bottom_nav_item_2">item_2</string>
+    <string name="bottom_nav_item_3">item_3</string>
+    <string name="bottom_nav_item_4">item_4</string>
+
+    <string name="tab_1">Tab 1</string>
+    <string name="tab_2">Tab 2</string>
+    <string name="tab_3">Tab 3</string>
+</resources>

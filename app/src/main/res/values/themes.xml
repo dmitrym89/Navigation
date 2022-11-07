@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Navigation" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/black_50_alpha</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="O_MR1">shortEdges</item>
+
+    </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_back</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_image</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/splash_icon_back</item>
+        <item name="postSplashScreenTheme">@style/Theme.Navigation</item>
+    </style>
+</resources>
