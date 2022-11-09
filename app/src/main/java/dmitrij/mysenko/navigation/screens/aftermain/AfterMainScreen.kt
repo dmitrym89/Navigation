@@ -1,5 +1,6 @@
 package dmitrij.mysenko.navigation.screens.aftermain
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,6 +20,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import dmitrij.mysenko.navigation.navigation.NestedGraph
 import dmitrij.mysenko.navigation.screens.Screen
@@ -33,7 +35,16 @@ fun AfterMainScreen(navController: NavController) {
     ) {
 
         CurrentRoute(navController = navController)
-
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(Screen.TabsScreen.route){popUpTo(Screen.MainScreen.route)}
+                navController.navigate(Screen.CustomTabsScreen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(text = "Back to MainScreen and forward to CustomTabScreen")
+        }
     }
 }
 
