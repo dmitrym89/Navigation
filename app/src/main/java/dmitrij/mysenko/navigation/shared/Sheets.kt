@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -24,8 +25,12 @@ fun BottomSheetContent() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(all = 16.dp)
+            .navigationBarsPadding()
     ) {
-        Text(text = "Sheet Content", fontWeight = FontWeight.W700)
+        Text(
+            text = "Sheet Content",
+            fontWeight = FontWeight.W700,
+        )
 
         Divider(thickness = 2.dp, modifier = Modifier.padding(vertical = 16.dp))
 

@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import dmitrij.mysenko.navigation.navigation.NestedGraph
 import dmitrij.mysenko.navigation.screens.Screen
 import dmitrij.mysenko.navigation.shared.CurrentRoute
+import kotlinx.coroutines.launch
 
 @Composable
 fun MainScreen(navController: NavController) {
@@ -81,7 +82,7 @@ fun MainScreen(navController: NavController) {
                 text = "Tabs"
             )
         }
-        listOf("").sorted()
+
 //
 //        Spacer(modifier = Modifier.height(20.dp))
 //        Button(
