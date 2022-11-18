@@ -86,6 +86,18 @@ fun MainScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
+                navController.navigate(Screen.DrawerScreen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(
+                text = "Drawer"
+            )
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
                 navController.navigate(NestedGraph.Other.route)
             },
             modifier = Modifier.fillMaxWidth(0.8f)

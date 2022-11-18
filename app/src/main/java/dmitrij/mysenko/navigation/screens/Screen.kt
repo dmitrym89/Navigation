@@ -56,6 +56,12 @@ sealed class Screen(val route: String){
     object SwipeableTabsScreen: Screen("swipeable_tabs_screen")
     object CustomTabsScreen: Screen("custom_tabs_screen")
 
+    object DrawerScreen: Screen("drawer_screen")
+    object DrawerTopScreen: Screen("drawer_top_screen")
+    object DrawerLatestScreen: Screen("drawer_latest_screen")
+    object DrawerUserScreen: Screen("drawer_user_screen")
+    object DrawerImageScreen: Screen("drawer_image_screen")
+
     object OtherScreen: Screen("other_screen")
     object WallpaperScreen: Screen("wallpaper_screen")
 

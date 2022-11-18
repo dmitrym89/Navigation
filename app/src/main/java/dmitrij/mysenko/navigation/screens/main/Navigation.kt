@@ -8,6 +8,7 @@ import dmitrij.mysenko.navigation.screens.aftermain.AfterMainScreen
 import dmitrij.mysenko.navigation.screens.main.other.otherGraph
 import dmitrij.mysenko.navigation.screens.main.bottomnav.bottomNavGraph
 import dmitrij.mysenko.navigation.screens.main.dialog.DialogScreen
+import dmitrij.mysenko.navigation.screens.main.drawer.DrawerScreen
 import dmitrij.mysenko.navigation.screens.main.popup.PopupScreen
 import dmitrij.mysenko.navigation.screens.main.sheets.sheetsGraph
 import dmitrij.mysenko.navigation.screens.main.tabs.tabsGraph
@@ -28,6 +29,9 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
         }
         composable(route = Screen.PopupScreen.route){
             PopupScreen(navController = navController)
+        }
+        composable(route = Screen.DrawerScreen.route){
+            DrawerScreen(rootNavController = navController)
         }
         sheetsGraph(navController = navController)
         tabsGraph(navController = navController)
