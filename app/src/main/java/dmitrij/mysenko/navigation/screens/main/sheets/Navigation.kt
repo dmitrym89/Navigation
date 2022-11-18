@@ -24,5 +24,8 @@ fun NavGraphBuilder.sheetsGraph(navController: NavController) {
         composable(route = Screen.ScaffoldBottomSheetScreen.route) {
             ScaffoldBottomSheetScreen(navController = navController)
         }
+        composable(route = Screen.BottomSheetLikePlayerScreen.route) {
+            BottomSheetLikePlayerScreen(navController = navController)
+        }
     }
 }

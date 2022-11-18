@@ -1,6 +1,7 @@
 package dmitrij.mysenko.navigation.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
@@ -34,6 +35,8 @@ fun NavigationTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
     } else {
         LightColorPalette
     }
+
+
 
     MaterialTheme(
         colors = colors,

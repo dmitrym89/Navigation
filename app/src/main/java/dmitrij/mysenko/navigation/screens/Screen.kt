@@ -49,14 +49,15 @@ sealed class Screen(val route: String){
     object ModalBottomSheetScreen: Screen("modal_bottom_sheet_screen")
     object HalfModalBottomSheetScreen: Screen("half_modal_bottom_sheet_screen")
     object ScaffoldBottomSheetScreen: Screen("scaffold_bottom_sheet_screen")
+    object BottomSheetLikePlayerScreen: Screen("bottom_sheet_like_player_screen")
 
     object TabsScreen: Screen("tabs_screen")
     object DefaultTabsScreen: Screen("default_tabs_screen")
     object SwipeableTabsScreen: Screen("swipeable_tabs_screen")
     object CustomTabsScreen: Screen("custom_tabs_screen")
 
-    object AnimationTransitionScreen: Screen("animation_transition_screen")
-    object AnimationTransition2Screen: Screen("animation_transition_2_screen")
+    object OtherScreen: Screen("other_screen")
+    object WallpaperScreen: Screen("wallpaper_screen")
 
     object AfterMainScreen: Screen("after_main_screen")
 

@@ -5,11 +5,8 @@ import androidx.navigation.compose.composable
 import dmitrij.mysenko.navigation.navigation.NestedGraph
 import dmitrij.mysenko.navigation.screens.Screen
 import dmitrij.mysenko.navigation.screens.aftermain.AfterMainScreen
-import dmitrij.mysenko.navigation.screens.main.animation.animationTransitionGraph
+import dmitrij.mysenko.navigation.screens.main.other.otherGraph
 import dmitrij.mysenko.navigation.screens.main.bottomnav.bottomNavGraph
-import dmitrij.mysenko.navigation.screens.main.bottomnavcustom.BottomNavCustomScreen
-import dmitrij.mysenko.navigation.screens.main.bottomnavgoogle.BottomNavGoogleScreen
-import dmitrij.mysenko.navigation.screens.main.bottomnavgooglelikeyoutube.BottomNavYoutubeScreen
 import dmitrij.mysenko.navigation.screens.main.dialog.DialogScreen
 import dmitrij.mysenko.navigation.screens.main.popup.PopupScreen
 import dmitrij.mysenko.navigation.screens.main.sheets.sheetsGraph
@@ -35,6 +32,6 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
         sheetsGraph(navController = navController)
         tabsGraph(navController = navController)
         bottomNavGraph(navController = navController)
-        animationTransitionGraph(navController = navController)
+        otherGraph(navController = navController)
     }
 }

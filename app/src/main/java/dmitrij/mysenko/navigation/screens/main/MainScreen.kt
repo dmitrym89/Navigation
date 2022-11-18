@@ -83,18 +83,17 @@ fun MainScreen(navController: NavController) {
             )
         }
 
-//
-//        Spacer(modifier = Modifier.height(20.dp))
-//        Button(
-//            onClick = {
-//                navController.navigate(NestedGraph.AnimationTransition.route)
-//            },
-//            modifier = Modifier.fillMaxWidth(0.8f)
-//        ) {
-//            Text(
-//                text = "AnimationTransition"
-//            )
-//        }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(NestedGraph.Other.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(
+                text = "Other"
+            )
+        }
     }
 }
 

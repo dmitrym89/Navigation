@@ -53,6 +53,15 @@ fun SheetScreen(navController: NavController) {
         ) {
             Text(text = "ScaffoldBottomSheet")
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(Screen.BottomSheetLikePlayerScreen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(text = "Like Audio Player")
+        }
 
 //        val context = LocalContext.current
 //        val deepLinkIntent = Intent(

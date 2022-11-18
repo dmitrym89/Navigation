@@ -1,4 +1,4 @@
-package dmitrij.mysenko.navigation.screens.main.animation
+package dmitrij.mysenko.navigation.screens.main.other
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -12,7 +12,7 @@ import dmitrij.mysenko.navigation.screens.Screen
 import dmitrij.mysenko.navigation.shared.CurrentRoute
 
 @Composable
-fun AnimationTransition2Screen(navController: NavController){
+fun OtherScreen(navController: NavController){
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -22,11 +22,11 @@ fun AnimationTransition2Screen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
-                navController.popBackStack()
+                navController.navigate(Screen.WallpaperScreen.route)
             },
             modifier = Modifier.fillMaxWidth(0.8f)
         ) {
-            Text(text = "Back")
+            Text(text = "Wallpaper")
         }
     }
 }

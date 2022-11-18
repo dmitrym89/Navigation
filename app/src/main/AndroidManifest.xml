@@ -37,6 +37,23 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <service android:name=".screens.main.other.wallpaper.WallpaperService"
+            android:enabled="true"
+            android:label="@string/wallpaper_description"
+            android:permission="android.permission.BIND_WALLPAPER"
+            android:exported="true">
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" >
+            </meta-data>
+
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService">
+                </action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
