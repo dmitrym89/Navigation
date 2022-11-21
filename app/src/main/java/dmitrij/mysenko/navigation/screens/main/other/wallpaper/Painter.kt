@@ -1,6 +1,7 @@
 package dmitrij.mysenko.navigation.screens.main.other.wallpaper
 
 import android.graphics.*
+import android.util.Log
 
 class Painter {
 
@@ -11,16 +12,28 @@ class Painter {
         paint.isAntiAlias = true
     }
 
-    fun draw(canvas: Canvas, stars: List<Star>) {
+    fun draw(canvas: Canvas, stars: List<Star>, objs: List<Obj>) {
+        val width = canvas.width
+        val height = canvas.height
+
         canvas.drawColor(spaceColor)
         for (star in stars) {
             paint.color = star.actualColor
             canvas.drawOval(
-                convertRectFToPixel(star.x2d, star.y2d, star.size, canvas.width, canvas.height),
+                convertRectFToPixel(star.x2d, star.y2d, star.actualSize, canvas.width, canvas.height),
                 paint
             )
         }
-
+        for(obj in objs){
+            //Log.e("AA", "obj = $obj")
+            if(obj.drawable!=null){
+                obj.drawable.setBounds(0,0,obj.actualSize.toInt(), obj.actualSize.toInt())
+                canvas.save()
+                canvas.translate(width/2 + width*obj.x2d/2, height/2 + height*obj.y2d/2)
+                obj.drawable.draw(canvas)
+                canvas.restore()
+            }
+        }
     }
 
     private fun convertRectFToPixel(

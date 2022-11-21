@@ -5,7 +5,6 @@ import android.os.Looper
 import android.service.wallpaper.WallpaperService
 import android.util.Log
 import android.view.SurfaceHolder
-import kotlin.random.Random
 
 class WallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine {
@@ -21,20 +20,24 @@ class WallpaperService : WallpaperService() {
         private val painter = Painter()
         private var lastUpdate: Long = System.currentTimeMillis()
 
+        init {
+            model.ctx = this@WallpaperService
+        }
+
         private val redrawRunnable = object : Runnable {
             override fun run() {
                 val currentTime = System.currentTimeMillis()
                 model.update(currentTime - lastUpdate)
                 lastUpdate = currentTime
-                holder?.let { draw(it, model.stars) }
+                holder?.let { draw(it, model.stars, model.objs) }
                 handler?.postDelayed(this, 50)
             }
         }
 
-        private fun draw(holder: SurfaceHolder, stars: List<Star>) {
+        private fun draw(holder: SurfaceHolder, stars: List<Star>, objs: List<Obj>) {
             try {
                 val canvas = holder.lockCanvas()
-                painter.draw(canvas, stars)
+                painter.draw(canvas, stars, objs)
                 holder.unlockCanvasAndPost(canvas)
             } catch (e: Exception) {
                 Log.e("WALLPAPER", e.message, e)
@@ -72,7 +75,7 @@ class WallpaperService : WallpaperService() {
         override fun onSurfaceRedrawNeeded(holder: SurfaceHolder) {
             super.onSurfaceRedrawNeeded(holder)
             this.holder = holder
-            draw(holder, model.stars)
+            draw(holder, model.stars, model.objs)
         }
 
         override fun onSurfaceCreated(holder: SurfaceHolder) {

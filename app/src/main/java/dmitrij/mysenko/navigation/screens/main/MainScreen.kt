@@ -1,5 +1,6 @@
 package dmitrij.mysenko.navigation.screens.main
 
+import android.graphics.drawable.Drawable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
