@@ -6,11 +6,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,6 +44,57 @@ fun AfterMainScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth(0.8f)
         ) {
             Text(text = "Back to MainScreen and forward to CustomTabScreen")
+        }
+
+        val list = listOf("aaa", "bbb", "ccc")
+        var selected by rememberSaveable {
+            mutableStateOf(list[0])
+        }
+        Spacer(modifier = Modifier.height(100.dp))
+        DropDownList(valuesList = list, valueToSelect = selected, selectedValue = {selected = it})
+
+    }
+}
+
+@Composable
+private fun DropDownList(
+    valuesList: List<String>,
+    valueToSelect: String,
+    selectedValue: (String) -> Unit
+) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+
+    Box {
+        Row(
+            modifier = Modifier.clickable { expanded = !expanded },
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = valueToSelect,
+                maxLines = 1,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.widthIn(256.dp)
+            )
+            Icon(
+                imageVector = Icons.Default.ArrowDropDown,
+                tint = MaterialTheme.colors.onBackground,
+                contentDescription = null
+            )
+        }
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            valuesList.forEach { value ->
+                DropdownMenuItem(
+                    onClick = {
+                        expanded = false
+                        selectedValue(value)
+                    }
+                ) {
+                    Text(text = value, textAlign = TextAlign.Center)
+                }
+            }
         }
     }
 }
