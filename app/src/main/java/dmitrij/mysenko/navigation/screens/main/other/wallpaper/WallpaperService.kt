@@ -17,24 +17,25 @@ class WallpaperService : WallpaperService() {
         private var holder: SurfaceHolder? = null
         private var handler: Handler? = null
 
+        private val model = Model()
+        private val painter = Painter()
+        private var lastUpdate: Long = System.currentTimeMillis()
+
         private val redrawRunnable = object : Runnable {
             override fun run() {
-                draw()
-                handler?.postDelayed(this, 5000)
+                val currentTime = System.currentTimeMillis()
+                model.update(currentTime - lastUpdate)
+                lastUpdate = currentTime
+                holder?.let { draw(it, model.stars) }
+                handler?.postDelayed(this, 50)
             }
         }
 
-        private fun draw() {
-            if (holder == null) return
+        private fun draw(holder: SurfaceHolder, stars: List<Star>) {
             try {
-                val canvas = holder?.lockCanvas()
-                val color: Int =
-                    255 shl 24 or
-                            Random.nextInt(256) shl 16 or
-                            Random.nextInt(256) shl 8 or
-                            Random.nextInt(256)
-                canvas?.drawColor(color)
-                holder?.unlockCanvasAndPost(canvas)
+                val canvas = holder.lockCanvas()
+                painter.draw(canvas, stars)
+                holder.unlockCanvasAndPost(canvas)
             } catch (e: Exception) {
                 Log.e("WALLPAPER", e.message, e)
             }
@@ -71,7 +72,7 @@ class WallpaperService : WallpaperService() {
         override fun onSurfaceRedrawNeeded(holder: SurfaceHolder) {
             super.onSurfaceRedrawNeeded(holder)
             this.holder = holder
-            draw()
+            draw(holder, model.stars)
         }
 
         override fun onSurfaceCreated(holder: SurfaceHolder) {

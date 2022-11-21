@@ -1,9 +1,7 @@
 package dmitrij.mysenko.navigation.screens.main.other
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
+import androidx.navigation.*
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import dmitrij.mysenko.navigation.navigation.NestedGraph
 import dmitrij.mysenko.navigation.screens.Screen
 
