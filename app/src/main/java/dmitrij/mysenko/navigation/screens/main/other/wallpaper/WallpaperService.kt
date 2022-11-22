@@ -1,10 +1,13 @@
 package dmitrij.mysenko.navigation.screens.main.other.wallpaper
 
+import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
 import android.service.wallpaper.WallpaperService
 import android.util.Log
 import android.view.SurfaceHolder
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import dmitrij.mysenko.navigation.R
 
 class WallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine {
@@ -21,7 +24,29 @@ class WallpaperService : WallpaperService() {
         private var lastUpdate: Long = System.currentTimeMillis()
 
         init {
-            model.ctx = this@WallpaperService
+            model.drawables = listOf(
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj1, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj2, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj3, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj4, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj5, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj6, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj7, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj8, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj9, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj10, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj11, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj12, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj13, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj14, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj15, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj16, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj17, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj18, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj19, null),
+                VectorDrawableCompat.create(this@WallpaperService.resources, R.drawable.obj20, null)
+            )
+            painter.bhBitmap = BitmapFactory.decodeResource(this@WallpaperService.resources, R.drawable.bh)
         }
 
         private val redrawRunnable = object : Runnable {
@@ -29,15 +54,15 @@ class WallpaperService : WallpaperService() {
                 val currentTime = System.currentTimeMillis()
                 model.update(currentTime - lastUpdate)
                 lastUpdate = currentTime
-                holder?.let { draw(it, model.stars, model.objs) }
+                holder?.let { draw(it, model.forDraw) }
                 handler?.postDelayed(this, 50)
             }
         }
 
-        private fun draw(holder: SurfaceHolder, stars: List<Star>, objs: List<Obj>) {
+        private fun draw(holder: SurfaceHolder, list: List<Space>) {
             try {
                 val canvas = holder.lockCanvas()
-                painter.draw(canvas, stars, objs)
+                painter.draw(canvas, list)
                 holder.unlockCanvasAndPost(canvas)
             } catch (e: Exception) {
                 Log.e("WALLPAPER", e.message, e)
@@ -75,7 +100,7 @@ class WallpaperService : WallpaperService() {
         override fun onSurfaceRedrawNeeded(holder: SurfaceHolder) {
             super.onSurfaceRedrawNeeded(holder)
             this.holder = holder
-            draw(holder, model.stars, model.objs)
+            draw(holder, model.forDraw)
         }
 
         override fun onSurfaceCreated(holder: SurfaceHolder) {

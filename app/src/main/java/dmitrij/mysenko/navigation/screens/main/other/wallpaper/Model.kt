@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Rect
 import android.graphics.RectF
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.VectorDrawable
 import android.util.Log
 import androidx.core.content.res.ResourcesCompat
@@ -16,22 +17,29 @@ import kotlin.random.Random
 
 class Model {
 
-    var ctx: Context? = null
-
     private val initZ = -3f
     private val initCoef = 0f
     private val chanceStar = 0.5f
     private val chanceObj = 0.1f
 
-    val stars = mutableListOf<Star>()
-    val objs = mutableListOf<Obj>()
+    var drawables = listOf<VectorDrawableCompat?>()
+
+    private val stars = mutableListOf<Star>()
+    private val objs = mutableListOf<Obj>()
+    private var bh = SuperMassiveBlackHole()
+
+    var forDraw: List<Space> = listOf()
 
     fun update(deltaTime: Long) {
         if (random(0f, 1f) < chanceStar) {
             stars.add(generateStar())
         }
         for (star in stars) {
-            star.z += deltaTime * star.speed
+            star.z += deltaTime * if (bh.z in -3f..0f) {
+                0.0002f
+            } else {
+                star.speed
+            }
             val coef = calculateCoef(star.z)
             star.actualSize = calculateActualSize(star.size, coef)
             star.actualColor = calculateActualColor(star, coef)
@@ -44,15 +52,34 @@ class Model {
             objs.add(generateObj())
         }
         for (obj in objs) {
-            obj.z += deltaTime * obj.speed
+            obj.z += deltaTime * if (bh.z in -3f..0f) {
+                0.0002f
+            } else {
+                obj.speed
+            }
             val coef = calculateCoef(obj.z)
             obj.actualSize = calculateActualSize(obj.size, coef)
             obj.x2d = obj.x / obj.z
             obj.y2d = obj.y / obj.z
         }
         objs.removeIf { obj -> obj.z >= 0 }
-        Log.e("AA", "count = ${stars.size}")
-        Log.e("AA", "objs = ${objs.size}")
+
+        bh.z = bh.z + deltaTime * when {
+            bh.z < -3 -> 0.0001f
+            bh.z in -3f..0f -> 0.0002f
+            bh.z >= 0 && bh.scale < 4f -> 0.0015f
+            else -> 0.03f
+        }
+//        bh.z = bh.z + if(bh.z > -3) 0.5f else 0.005f
+        bh.scale = abs(-10f - bh.z) / 10f
+        if (bh.scale > 12) {
+            stars.clear()
+            objs.clear()
+            bh = SuperMassiveBlackHole()
+        }
+        //Log.e("AA", "scale = ${bh.scale}, z = ${bh.z}")
+
+        forDraw = listOf(*stars.toTypedArray(), *objs.toTypedArray(), bh).sortedBy { it.z }
     }
 
     private fun generateStar(): Star {
@@ -89,29 +116,7 @@ class Model {
     }
 
     private fun generateDrawable(): VectorDrawableCompat? {
-        val id = when (Random.nextInt(1, 21)) {
-            1 -> R.drawable.obj1
-            2 -> R.drawable.obj2
-            3 -> R.drawable.obj3
-            4 -> R.drawable.obj4
-            5 -> R.drawable.obj5
-            6 -> R.drawable.obj6
-            7 -> R.drawable.obj7
-            8 -> R.drawable.obj8
-            9 -> R.drawable.obj9
-            10 -> R.drawable.obj10
-            11 -> R.drawable.obj11
-            12 -> R.drawable.obj12
-            13 -> R.drawable.obj13
-            14 -> R.drawable.obj14
-            15 -> R.drawable.obj15
-            16 -> R.drawable.obj16
-            17 -> R.drawable.obj17
-            18 -> R.drawable.obj18
-            19 -> R.drawable.obj19
-            else -> R.drawable.obj20
-        }
-        return if (ctx == null) null else VectorDrawableCompat.create(ctx!!.resources, id, null)
+        return drawables[Random.nextInt(0, 20)]
     }
 
 
