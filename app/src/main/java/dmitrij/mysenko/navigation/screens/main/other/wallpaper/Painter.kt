@@ -48,49 +48,45 @@ class Painter {
                     }
                 }
                 is SuperMassiveBlackHole -> {
-                    if (bhBitmap != null) {
-                        try {
-                            val normalizedWidthScale = bhBitmap!!.width * item.scale / width
-                            val offsetX = if (normalizedWidthScale <= 1) {
-                                0
-                            } else {
-                                ((bhBitmap!!.width * item.scale - width) / item.scale / 2).toInt()
-                            }
-
-                            val normalizedHeightScale = bhBitmap!!.height * item.scale / height
-                            val offsetY = if (normalizedHeightScale <= 1) {
-                                0
-                            } else {
-                                ((bhBitmap!!.height * item.scale - height) / item.scale / 2).toInt()
-                            }
-
-                            val matrix = Matrix()
-                            matrix.postScale(item.scale, item.scale)
-
-                            val bitmap = Bitmap.createBitmap(
-                                bhBitmap!!,
-                                offsetX,
-                                offsetY,
-                                bhBitmap!!.width - offsetX * 2,
-                                bhBitmap!!.height - offsetY * 2,
-                                matrix,
-                                true
-                            )
-//                            Log.e("AA", "bhScale = ${item.scale} ")
-//                            Log.e("AA", "newScale = $normalizedWidthScale $normalizedHeightScale")
-//                            Log.e("AA", "offset = $offsetX $offsetY")
-//                            Log.e("AA", "bitmap = ${bitmap.width}, ${bitmap.height}")
-                            canvas.drawBitmap(
-                                bitmap,
-                                ((width - bitmap.width) / 2).toFloat(),
-                                ((height - bitmap.height) / 2).toFloat(),
-                                paint
-                            )
-                            bitmap.recycle()
-                        } catch (e: Exception) {
-                            Log.e("WALLPAPER", e.message, e)
-                        }
-                    }
+//                    if (bhBitmap != null) {
+//                        try {
+//                            val normalizedWidthScale = bhBitmap!!.width * item.scale / width
+//                            val offsetX = if (normalizedWidthScale <= 1) {
+//                                0
+//                            } else {
+//                                ((bhBitmap!!.width * item.scale - width) / item.scale / 2).toInt()
+//                            }
+//
+//                            val normalizedHeightScale = bhBitmap!!.height * item.scale / height
+//                            val offsetY = if (normalizedHeightScale <= 1) {
+//                                0
+//                            } else {
+//                                ((bhBitmap!!.height * item.scale - height) / item.scale / 2).toInt()
+//                            }
+//
+//                            val matrix = Matrix()
+//                            matrix.postScale(item.scale, item.scale)
+//
+//                            val bitmap = Bitmap.createBitmap(
+//                                bhBitmap!!,
+//                                offsetX,
+//                                offsetY,
+//                                bhBitmap!!.width - offsetX * 2,
+//                                bhBitmap!!.height - offsetY * 2,
+//                                matrix,
+//                                true
+//                            )
+//                            canvas.drawBitmap(
+//                                bitmap,
+//                                ((width - bitmap.width) / 2).toFloat(),
+//                                ((height - bitmap.height) / 2).toFloat(),
+//                                paint
+//                            )
+//                            bitmap.recycle()
+//                        } catch (e: Exception) {
+//                            Log.e("WALLPAPER", e.message, e)
+//                        }
+//                    }
                 }
             }
         }
