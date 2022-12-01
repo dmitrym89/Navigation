@@ -28,5 +28,14 @@ fun OtherScreen(navController: NavController){
         ) {
             Text(text = "Wallpaper")
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(Screen.GridLayoutScreen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(text = "GridLayout")
+        }
     }
 }

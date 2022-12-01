@@ -64,6 +64,7 @@ sealed class Screen(val route: String){
 
     object OtherScreen: Screen("other_screen")
     object WallpaperScreen: Screen("wallpaper_screen")
+    object GridLayoutScreen: Screen("grid_layout_screen")
 
     object AfterMainScreen: Screen("after_main_screen")
 
