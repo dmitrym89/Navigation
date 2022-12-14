@@ -66,6 +66,14 @@ sealed class Screen(val route: String){
     object WallpaperScreen: Screen("wallpaper_screen")
     object GridLayoutScreen: Screen("grid_layout_screen")
 
+    object DragAndDropScreen: Screen("drag_and_drop_screen")
+    object SimpleDragAndDropScreen: Screen("simple_drag_and_drop_screen")
+    object TwoListsDragAndDropScreen: Screen("two_lists_drag_and_drop_screen")
+
+    object CollapsingScreen: Screen("collapsing_screen")
+    object CollapsingHalfVisibleRectScreen: Screen("collapsing_half_visible_rect_screen")
+    object CollapsingClassicScreen: Screen("collapsing_classic_screen")
+
     object AfterMainScreen: Screen("after_main_screen")
 
     fun makeRoute(root: NestedGraph) = "${root.makeRoute()}/$route"

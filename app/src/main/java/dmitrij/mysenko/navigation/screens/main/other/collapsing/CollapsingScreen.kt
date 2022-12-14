@@ -1,4 +1,4 @@
-package dmitrij.mysenko.navigation.screens.main.other
+package dmitrij.mysenko.navigation.screens.main.other.collapsing
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -12,48 +12,32 @@ import dmitrij.mysenko.navigation.screens.Screen
 import dmitrij.mysenko.navigation.shared.CurrentRoute
 
 @Composable
-fun OtherScreen(navController: NavController){
+fun CollapsingScreen(navController: NavController){
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
     ) {
         CurrentRoute(navController = navController)
+
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
-                navController.navigate(Screen.WallpaperScreen.route)
+                navController.navigate(Screen.CollapsingHalfVisibleRectScreen.route)
             },
             modifier = Modifier.fillMaxWidth(0.8f)
         ) {
-            Text(text = "Wallpaper")
+            Text(text = "Half visible rect")
         }
+
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
-                navController.navigate(Screen.GridLayoutScreen.route)
+                navController.navigate(Screen.CollapsingClassicScreen.route)
             },
             modifier = Modifier.fillMaxWidth(0.8f)
         ) {
-            Text(text = "GridLayout")
-        }
-        Spacer(modifier = Modifier.height(20.dp))
-        Button(
-            onClick = {
-                navController.navigate(Screen.DragAndDropScreen.route)
-            },
-            modifier = Modifier.fillMaxWidth(0.8f)
-        ) {
-            Text(text = "DragAndDrop")
-        }
-        Spacer(modifier = Modifier.height(20.dp))
-        Button(
-            onClick = {
-                navController.navigate(Screen.CollapsingScreen.route)
-            },
-            modifier = Modifier.fillMaxWidth(0.8f)
-        ) {
-            Text(text = "Collapsing")
+            Text(text = "Classic")
         }
     }
 }
