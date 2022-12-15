@@ -55,5 +55,14 @@ fun OtherScreen(navController: NavController){
         ) {
             Text(text = "Collapsing")
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(Screen.IosActivityScreen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(text = "iOS Activity")
+        }
     }
 }

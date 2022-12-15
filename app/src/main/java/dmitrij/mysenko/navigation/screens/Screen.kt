@@ -74,6 +74,8 @@ sealed class Screen(val route: String){
     object CollapsingHalfVisibleRectScreen: Screen("collapsing_half_visible_rect_screen")
     object CollapsingClassicScreen: Screen("collapsing_classic_screen")
 
+    object IosActivityScreen: Screen("ios_activity_screen")
+
     object AfterMainScreen: Screen("after_main_screen")
 
     fun makeRoute(root: NestedGraph) = "${root.makeRoute()}/$route"
