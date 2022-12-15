@@ -1,18 +1,15 @@
 package dmitrij.mysenko.navigation.screens.main.other.collapsing
 
-import android.util.Log
-import androidx.compose.animation.core.FloatDecayAnimationSpec
 import androidx.compose.animation.core.FloatExponentialDecaySpec
 import androidx.compose.animation.core.animateDecay
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Button
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.mapSaver
@@ -36,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import dmitrij.mysenko.navigation.R
-import dmitrij.mysenko.navigation.screens.Screen
 import dmitrij.mysenko.navigation.shared.CurrentRoute
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
@@ -58,7 +54,9 @@ fun CollapsingClassicScreen(navController: NavController) {
         repeat(20) {
             data.add(ListItem(it, "item_$it"))
         }
-
+        val itemColor = remember {
+            Color((150 shl 24) or (255 shl 16) or (255 shl 8) or 255)
+        }
         CollapsingClassic(
             data = data.toList(),
             minHeight = 80.dp,
@@ -71,7 +69,7 @@ fun CollapsingClassicScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(5.dp)
-                        .background(color = Color((150 shl 24) or (255 shl 16) or (255 shl 8) or 255))
+                        .background(color = itemColor)
                         .padding(10.dp)
                 )
             },
@@ -100,8 +98,8 @@ fun CollapsingClassicScreen(navController: NavController) {
                             .size(80.dp)
                             .align(alignment = Alignment.TopEnd)
                             .graphicsLayer {
-                                translationY = -(250.dp * (1-state.progress)).toPx()
-                                translationX = -((minWidth - 100.dp) * (1-state.progress)).toPx()
+                                translationY = -(250.dp * (1 - state.progress)).toPx()
+                                translationX = -((minWidth - 100.dp) * (1 - state.progress)).toPx()
                             }
                     )
                     Image(
@@ -244,7 +242,7 @@ private fun rememberCollapsingState(min: Dp, max: Dp): CollapsingState {
     }
 }
 
-class CollapsingStateImpl(
+private class CollapsingStateImpl(
     private val min: Float,
     private val max: Float,
     scrollOffset: Float = 0f
