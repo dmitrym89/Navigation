@@ -39,7 +39,7 @@ fun IosActivityScreen(navController: NavController) {
         val ra: Float by animateFloatAsState(
             targetValue = r.second,
             animationSpec = tween(
-                durationMillis = (r.second - r.first).toInt()*3,
+                durationMillis = (r.second - r.first).toInt() * 3,
                 delayMillis = 0,
                 easing = FastOutSlowInEasing
             )
@@ -47,7 +47,7 @@ fun IosActivityScreen(navController: NavController) {
         val ga: Float by animateFloatAsState(
             targetValue = g.second,
             animationSpec = tween(
-                durationMillis = (g.second - g.first).toInt()*3,
+                durationMillis = (g.second - g.first).toInt() * 3,
                 delayMillis = 0,
                 easing = FastOutSlowInEasing
             )
@@ -55,7 +55,7 @@ fun IosActivityScreen(navController: NavController) {
         val ba: Float by animateFloatAsState(
             targetValue = b.second,
             animationSpec = tween(
-                durationMillis = (b.second - b.first).toInt()*3,
+                durationMillis = (b.second - b.first).toInt() * 3,
                 delayMillis = 0,
                 easing = FastOutSlowInEasing
             )
@@ -66,22 +66,22 @@ fun IosActivityScreen(navController: NavController) {
                 .padding(20.dp)
         ) {
             TextField(
-                value = if(r.second == 0f) "" else r.second.toInt().toString(),
-                onValueChange = { r = Pair(r.second, it.trim().toFloat())  },
+                value = if (r.second == 0f) "" else r.second.toInt().toString(),
+                onValueChange = { r = Pair(r.second, it.trim().toFloat()) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.width(20.dp))
             TextField(
-                value = if(g.second == 0f) "" else g.second.toInt().toString(),
-                onValueChange = { g = Pair(g.second, it.trim().toFloat())  },
+                value = if (g.second == 0f) "" else g.second.toInt().toString(),
+                onValueChange = { g = Pair(g.second, it.trim().toFloat()) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.width(20.dp))
             TextField(
-                value = if(b.second == 0f) "" else b.second.toInt().toString(),
-                onValueChange = { b = Pair(b.second, it.trim().toFloat())  },
+                value = if (b.second == 0f) "" else b.second.toInt().toString(),
+                onValueChange = { b = Pair(b.second, it.trim().toFloat()) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.weight(1f)
             )

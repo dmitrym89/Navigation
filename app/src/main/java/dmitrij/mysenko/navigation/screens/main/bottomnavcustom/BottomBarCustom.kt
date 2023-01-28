@@ -22,6 +22,8 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
@@ -33,9 +35,7 @@ import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -257,6 +257,10 @@ private fun CustomBottomBar(
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
+//                .shadow(
+//                    elevation = 4.dp,
+//                    shape = BottomBarShape(count = count, animationProgress = animationProgress, elevation = 4.dp),
+//                )
         ) {
             val width = size.width
             val height = size.height
@@ -318,6 +322,45 @@ private fun CustomBottomBar(
             content()
         }
     }
+}
+
+class BottomBarShape(
+    private val count: Int,
+    private val animationProgress: Float,
+    private val elevation: Dp
+) : Shape {
+    override fun createOutline(
+        size: Size,
+        layoutDirection: LayoutDirection,
+        density: Density,
+    ) = Outline.Generic(Path().apply {
+        val width = size.width
+        val height = size.height
+        val segmentWidth = width.div(count)
+        val offset = segmentWidth.times(animationProgress)
+        val halfSegmentWidth = offset + segmentWidth.times(.5f)
+        val quarterSegmentWidth = offset + segmentWidth.times(.25f)
+        val threeQuarterSegmentWidth = offset + segmentWidth.times(.75f)
+        val barTopOffset = height.times(.2f)
+        val shadowPadding = elevation.value * density.density
+
+        moveTo(0f, height)
+        lineTo(0f, barTopOffset)
+        lineTo(offset, barTopOffset)
+        cubicTo(
+            quarterSegmentWidth, barTopOffset,
+            quarterSegmentWidth, 0f,
+            halfSegmentWidth, 0f
+        )
+        cubicTo(
+            threeQuarterSegmentWidth, 0f,
+            threeQuarterSegmentWidth, barTopOffset,
+            offset + segmentWidth, barTopOffset
+        )
+        lineTo(width, barTopOffset)
+        lineTo(width, height)
+        lineTo(0f, height)
+    })
 }
 
 sealed class BottomNavCustomItem(
