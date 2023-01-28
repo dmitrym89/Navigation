@@ -12,6 +12,7 @@ import dmitrij.mysenko.navigation.screens.main.other.draganddrop.simple.SimpleDr
 import dmitrij.mysenko.navigation.screens.main.other.draganddrop.twolists.TwoListsDragAndDropScreen
 import dmitrij.mysenko.navigation.screens.main.other.grid.GridLayoutScreen
 import dmitrij.mysenko.navigation.screens.main.other.iosactivity.IosActivityScreen
+import dmitrij.mysenko.navigation.screens.main.other.masks.MasksScreen
 
 fun NavGraphBuilder.otherGraph(navController: NavController) {
     navigation(
@@ -47,6 +48,9 @@ fun NavGraphBuilder.otherGraph(navController: NavController) {
         }
         composable(route = Screen.IosActivityScreen.route){
             IosActivityScreen(navController = navController)
+        }
+        composable(route = Screen.MasksScreen.route){
+            MasksScreen(navController = navController)
         }
     }
 }

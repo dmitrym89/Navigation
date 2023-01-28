@@ -16,6 +16,7 @@ sealed class NestedGraph(val route: String, private val root: NestedGraph? = nul
     object BottomNavYoutube3: NestedGraph("bottom_nav_google_youtube_3")
     object BottomNavYoutube4: NestedGraph("bottom_nav_google_youtube_4")
     object Sheets: NestedGraph("sheets")
+    object Lookahead: NestedGraph("lookahead")
     object Tabs: NestedGraph("tabs")
     object DrawerTop: NestedGraph("drawer_top")
     object DrawerLatest: NestedGraph("drawer_latest")

@@ -62,6 +62,9 @@ sealed class Screen(val route: String){
     object DrawerUserScreen: Screen("drawer_user_screen")
     object DrawerImageScreen: Screen("drawer_image_screen")
 
+    object LookaheadLayoutScreen: Screen("lookahead_layout_screen")
+    object ColumnToRowScreen: Screen("column_to_row_screen")
+
     object OtherScreen: Screen("other_screen")
     object WallpaperScreen: Screen("wallpaper_screen")
     object GridLayoutScreen: Screen("grid_layout_screen")
@@ -75,6 +78,8 @@ sealed class Screen(val route: String){
     object CollapsingClassicScreen: Screen("collapsing_classic_screen")
 
     object IosActivityScreen: Screen("ios_activity_screen")
+
+    object MasksScreen: Screen("masks_screen")
 
     object AfterMainScreen: Screen("after_main_screen")
 

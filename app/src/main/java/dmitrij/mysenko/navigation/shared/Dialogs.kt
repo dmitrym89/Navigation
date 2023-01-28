@@ -168,7 +168,7 @@ fun MultipleChoiceDialog(
                         modifier = Modifier
                             .padding(bottom = 5.dp)
                             .fillMaxWidth()
-                            .background(color = if(item.value) Color.DarkGray else Color.LightGray)
+                            .background(color = if (item.value) Color.DarkGray else Color.LightGray)
                             .clickable {
                                 choose[item.key] = !item.value
                             }

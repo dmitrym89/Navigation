@@ -9,6 +9,7 @@ import dmitrij.mysenko.navigation.screens.main.other.otherGraph
 import dmitrij.mysenko.navigation.screens.main.bottomnav.bottomNavGraph
 import dmitrij.mysenko.navigation.screens.main.dialog.DialogScreen
 import dmitrij.mysenko.navigation.screens.main.drawer.DrawerScreen
+import dmitrij.mysenko.navigation.screens.main.lookahead.lookaheadGraph
 import dmitrij.mysenko.navigation.screens.main.popup.PopupScreen
 import dmitrij.mysenko.navigation.screens.main.sheets.sheetsGraph
 import dmitrij.mysenko.navigation.screens.main.tabs.tabsGraph
@@ -34,6 +35,7 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
             DrawerScreen(rootNavController = navController)
         }
         sheetsGraph(navController = navController)
+        lookaheadGraph(navController = navController)
         tabsGraph(navController = navController)
         bottomNavGraph(navController = navController)
         otherGraph(navController = navController)
