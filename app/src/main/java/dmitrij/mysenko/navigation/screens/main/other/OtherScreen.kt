@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dmitrij.mysenko.navigation.screens.Screen
 import dmitrij.mysenko.navigation.shared.CurrentRoute
+import dmitrij.mysenko.navigation.shared.PositionProviderPopup
 
 @Composable
 fun OtherScreen(navController: NavController){
@@ -63,6 +64,15 @@ fun OtherScreen(navController: NavController){
             modifier = Modifier.fillMaxWidth(0.8f)
         ) {
             Text(text = "iOS Activity")
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(Screen.MasksScreen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(text = "Masks")
         }
     }
 }
