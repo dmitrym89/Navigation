@@ -2,10 +2,13 @@ package dmitrij.mysenko.navigation.screens.main.bottomnavgoogle
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dmitrij.mysenko.navigation.navigation.NestedGraph

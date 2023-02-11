@@ -2,6 +2,7 @@ package dmitrij.mysenko.navigation.screens.main.other.draganddrop.simple
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.*
@@ -35,7 +36,6 @@ fun SimpleDragAndDropScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(50.dp))
         CurrentRoute(navController = navController)
         Spacer(modifier = Modifier.height(50.dp))
-
 
         val data = mutableListOf<ListItem>()
         repeat(20) {

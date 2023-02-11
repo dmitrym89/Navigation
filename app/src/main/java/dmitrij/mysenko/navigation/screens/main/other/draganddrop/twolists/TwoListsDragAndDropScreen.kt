@@ -2,6 +2,9 @@ package dmitrij.mysenko.navigation.screens.main.other.draganddrop.twolists
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -11,6 +14,8 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -28,6 +33,13 @@ fun TwoListsDragAndDropScreen(navController: NavController) {
     ) {
         CurrentRoute(navController = navController)
         Spacer(modifier = Modifier.height(20.dp))
+        Text(text = "Aaaaa", textAlign = TextAlign.Center,modifier = Modifier
+            .width(200.dp)
+            .height(50.dp)
+            .background(Color.LightGray)
+            .wrapContentHeight())
+        Spacer(modifier = Modifier.height(20.dp))
+        CircularProgressIndicator(backgroundColor = Color.LightGray)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
