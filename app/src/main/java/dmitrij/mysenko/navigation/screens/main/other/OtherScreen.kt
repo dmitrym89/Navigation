@@ -74,5 +74,14 @@ fun OtherScreen(navController: NavController){
         ) {
             Text(text = "Masks")
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(Screen.Player13Screen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(text = "Player13")
+        }
     }
 }

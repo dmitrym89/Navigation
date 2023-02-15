@@ -40,6 +40,12 @@ fun TwoListsDragAndDropScreen(navController: NavController) {
             .wrapContentHeight())
         Spacer(modifier = Modifier.height(20.dp))
         CircularProgressIndicator(backgroundColor = Color.LightGray)
+        var isLogin by remember{ mutableStateOf<Boolean?>(null) }
+        when(isLogin){
+            null -> { CircularProgressIndicator()}
+            true -> {}
+            false -> {}
+        }
         Box(
             modifier = Modifier
                 .fillMaxWidth()
