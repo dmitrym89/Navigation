@@ -14,6 +14,7 @@ import dmitrij.mysenko.navigation.screens.main.other.grid.GridLayoutScreen
 import dmitrij.mysenko.navigation.screens.main.other.iosactivity.IosActivityScreen
 import dmitrij.mysenko.navigation.screens.main.other.masks.MasksScreen
 import dmitrij.mysenko.navigation.screens.main.other.player13.Player13Screen
+import dmitrij.mysenko.navigation.screens.main.other.table.TableScreen
 
 fun NavGraphBuilder.otherGraph(navController: NavController) {
     navigation(
@@ -55,6 +56,9 @@ fun NavGraphBuilder.otherGraph(navController: NavController) {
         }
         composable(route = Screen.Player13Screen.route){
             Player13Screen(navController = navController)
+        }
+        composable(route = Screen.TableScreen.route){
+            TableScreen(navController = navController)
         }
     }
 }

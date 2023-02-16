@@ -61,7 +61,7 @@ fun Player13Screen(navController: NavController) {
 }
 
 @Composable
-fun PlayerSin(
+private fun PlayerSin(
     modifier: Modifier,
     progress: Float,
     radius: Dp = 15.dp,
@@ -161,7 +161,7 @@ fun PlayerSin(
     }
 }
 
-fun getList(steps: Int): List<Float> {
+private fun getList(steps: Int): List<Float> {
     val values = mutableListOf<Float>()
     for (x in 0 until steps) {
         values.add(sin(2 * x * Math.PI / steps).toFloat())

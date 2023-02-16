@@ -83,5 +83,14 @@ fun OtherScreen(navController: NavController){
         ) {
             Text(text = "Player13")
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = {
+                navController.navigate(Screen.TableScreen.route)
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text(text = "Table")
+        }
     }
 }

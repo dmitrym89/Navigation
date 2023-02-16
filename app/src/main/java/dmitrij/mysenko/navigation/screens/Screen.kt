@@ -83,6 +83,8 @@ sealed class Screen(val route: String){
 
     object Player13Screen: Screen("player_13_screen")
 
+    object TableScreen: Screen("table_screen")
+
     object AfterMainScreen: Screen("after_main_screen")
 
     fun makeRoute(root: NestedGraph) = "${root.makeRoute()}/$route"
