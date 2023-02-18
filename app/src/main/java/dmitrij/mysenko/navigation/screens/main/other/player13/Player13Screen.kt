@@ -82,7 +82,7 @@ private fun PlayerSin(
     val infiniteTransition = rememberInfiniteTransition()
     val offset by infiniteTransition.animateFloat(
         initialValue = 0f,
-        targetValue = 30f,
+        targetValue = waveStep.value,
         animationSpec = infiniteRepeatable(
             animation = tween(speed, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
