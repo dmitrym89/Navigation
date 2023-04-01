@@ -1,5 +1,6 @@
 package dmitrij.mysenko.navigation
 
+import android.util.Log
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -44,4 +45,31 @@ class ExampleUnitTest {
         }
         println(result.joinToString())
     }
+
+    class A(private val v: Int){
+        override fun hashCode(): Int {
+            return v%5
+        }
+
+        override fun equals(other: Any?): Boolean {
+            return other != null && other is A && v == other.v
+        }
+
+        override fun toString(): String {
+            return "$v"
+        }
+    }
+
+    @Test
+    fun hashSetTest(){
+
+        val aa = HashSet<A>()
+        aa.add(A(1))
+        aa.add(A(2))
+        aa.add(A(6))
+        aa.add(A(6))
+
+        println(aa.joinToString())
+    }
+
 }

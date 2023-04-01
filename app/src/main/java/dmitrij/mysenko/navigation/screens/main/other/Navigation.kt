@@ -4,6 +4,7 @@ import androidx.navigation.*
 import androidx.navigation.compose.composable
 import dmitrij.mysenko.navigation.navigation.NestedGraph
 import dmitrij.mysenko.navigation.screens.Screen
+import dmitrij.mysenko.navigation.screens.main.other.chart.ChartScreen
 import dmitrij.mysenko.navigation.screens.main.other.collapsing.CollapsingClassicScreen
 import dmitrij.mysenko.navigation.screens.main.other.collapsing.CollapsingHalfVisibleRectScreen
 import dmitrij.mysenko.navigation.screens.main.other.collapsing.CollapsingScreen
@@ -59,6 +60,9 @@ fun NavGraphBuilder.otherGraph(navController: NavController) {
         }
         composable(route = Screen.TableScreen.route){
             TableScreen(navController = navController)
+        }
+        composable(route = Screen.ChartScreen.route){
+            ChartScreen(navController = navController)
         }
     }
 }
