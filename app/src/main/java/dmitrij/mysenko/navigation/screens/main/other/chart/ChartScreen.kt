@@ -1,5 +1,6 @@
 package dmitrij.mysenko.navigation.screens.main.other.chart
 
+import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.drawText
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
 import dmitrij.mysenko.navigation.shared.CurrentRoute
+import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.random.Random
@@ -48,7 +50,8 @@ private fun Chart(
     modifier: Modifier = Modifier,
     fontColor: Color = Color.DarkGray,
     fontSize: TextUnit = TextUnit.Unspecified,
-    values: List<Float> = listOf(40f, 20f, 10f, 20f)
+    strokeWidth: Dp = 4.dp,
+    values: List<Float> = listOf(40f, 20f, 1f, 8f, 20f)
 ) {
     require(values.isNotEmpty()) { "List of values must not be empty" }
     val sum = values.sum()
@@ -84,7 +87,6 @@ private fun Chart(
             val r = (size.width - thickness) / 2
             val radiansCoef = 0.017453292f
 
-
             data.forEach { chartData ->
                 drawArc(
                     color = Color(Random.nextLong()),
@@ -99,21 +101,23 @@ private fun Chart(
                 startAngle += chartData.degrees
             }
 
-            startAngle = 90f
-            data.forEach { chartData ->
-                val angle = radiansCoef * startAngle
-                val x = center.x + size.width/2 * cos(angle)
-                val y = center.y + size.width/2 * sin(angle)
+            if (data.size > 1) {
+                startAngle = 90f
+                data.forEach { chartData ->
+                    val angle = radiansCoef * startAngle
+                    val x = center.x * (1 + cos(angle))
+                    val y = center.y * (1 + sin(angle))
 
-                drawLine(
-                    color = Color.Transparent,
-                    start = center,
-                    end = Offset(x, y),
-                    strokeWidth = 5.dp.toPx(),
-                    blendMode = BlendMode.DstIn
-                )
+                    drawLine(
+                        color = Color.Transparent,
+                        start = center,
+                        end = Offset(x, y),
+                        strokeWidth = strokeWidth.toPx(),
+                        blendMode = BlendMode.DstIn
+                    )
 
-                startAngle += chartData.degrees
+                    startAngle += chartData.degrees
+                }
             }
 
             startAngle = 90f
@@ -122,18 +126,22 @@ private fun Chart(
                     text = AnnotatedString(chartData.percent),
                     style = textStyle,
                 )
+                val arcLength = PI * r * chartData.degrees / 180
 
-                val angle = radiansCoef * (startAngle + chartData.degrees / 2)
-                val x = center.x + r * cos(angle)
-                val y = center.y + r * sin(angle)
+                if (arcLength > textLayoutResult.size.width) {
+                    val angle = radiansCoef * (startAngle + chartData.degrees / 2)
+                    val x = center.x + r * cos(angle)
+                    val y = center.y + r * sin(angle)
 
-                drawText(
-                    textLayoutResult = textLayoutResult,
-                    topLeft = Offset(
-                        x - textLayoutResult.size.width / 2,
-                        y - textLayoutResult.size.height / 2
+
+                    drawText(
+                        textLayoutResult = textLayoutResult,
+                        topLeft = Offset(
+                            x - textLayoutResult.size.width / 2,
+                            y - textLayoutResult.size.height / 2
+                        )
                     )
-                )
+                }
 
                 startAngle += chartData.degrees
             }
