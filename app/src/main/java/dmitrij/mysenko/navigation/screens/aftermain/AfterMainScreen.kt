@@ -57,7 +57,7 @@ fun AfterMainScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(50.dp))
 
         val list = mutableListOf<MyItem>()
-        repeat(15) { i ->
+        repeat(17) { i ->
             list.add(MyItem(i, "item$i"))
         }
         MyGrid(
